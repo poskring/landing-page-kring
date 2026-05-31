@@ -9,8 +9,8 @@
     content="Dokumentasi resmi dan panduan penggunaan Aplikasi Kasir Desktop Kring. Sistem Point of Sale (POS) cepat, offline-first, dan terintegrasi cloud.">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="/public/icon.ico" type="image/x-icon">
-  <link rel="icon" href="/public/icon.png" type="image/png" sizes="32x32">
+  <link rel="shortcut icon" href="public/icon.ico" type="image/x-icon">
+  <link rel="icon" href="public/icon.png" type="image/png" sizes="32x32">
 
   <!-- Google Fonts: Outfit & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1438,6 +1438,33 @@
         font-size: 38px;
       }
 
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .hero-actions .cta-btn,
+      .hero-actions .docs-button {
+        width: 100%;
+        max-width: 320px;
+        box-sizing: border-box;
+      }
+
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 16px 24px;
+        justify-content: center;
+        margin-top: 20px;
+        padding-top: 24px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
       .nav-links {
         display: none;
       }
@@ -1470,7 +1497,7 @@
   <header id="main-header">
     <div class="nav-container">
       <a href="#hero" class="logo">
-        <img src="/public/icon.png" alt="Kring Logo"
+        <img src="public/icon.png" alt="Kring Logo"
           style="width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));">
         <span>kring</span>
       </a>
@@ -1546,9 +1573,8 @@
         <div class="hero-visual">
           <div class="hero-glow-circle"></div>
           <div class="hero-mockup-wrapper"
-            onclick="openLightbox('/public/images/pos_checkout_mockup.png', 'Modul Kasir Utama (POS)', 'Tampilan modul transaksi dengan kolom barcode scan otomatis, keranjang belanja, kalkulasi diskon, dan metode pembayaran lengkap.')">
-            <img src="/public/images/pos_checkout_mockup.png" alt="POS Cashier Dashboard Mockup"
-              class="hero-mockup-img">
+            onclick="openLightbox('public/images/pos_checkout_mockup.png', 'Modul Kasir Utama (POS)', 'Tampilan modul transaksi dengan kolom barcode scan otomatis, keranjang belanja, kalkulasi diskon, dan metode pembayaran lengkap.')">
+            <img src="public/images/pos_checkout_mockup.png" alt="POS Cashier Dashboard Mockup" class="hero-mockup-img">
           </div>
         </div>
       </div>
@@ -1736,8 +1762,8 @@
             </a>
 
             <div class="docs-visual-card"
-              onclick="openLightbox('/public/images/inventory_settings_mockup.png', 'Pengaturan Lisensi & Pengguna', 'Halaman pemeliharaan untuk mengelola lisensi aplikasi serta menambah/mengedit akun admin dan kasir.')">
-              <img src="/public/images/inventory_settings_mockup.png" alt="Aktivasi Lisensi Mockup">
+              onclick="openLightbox('public/images/inventory_settings_mockup.png', 'Pengaturan Lisensi & Pengguna', 'Halaman pemeliharaan untuk mengelola lisensi aplikasi serta menambah/mengedit akun admin dan kasir.')">
+              <img src="public/images/inventory_settings_mockup.png" alt="Aktivasi Lisensi Mockup">
               <div class="docs-visual-overlay">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   style="width: 14px; height: 14px;">
@@ -1784,8 +1810,8 @@
             </ul>
 
             <div class="docs-visual-card"
-              onclick="openLightbox('/public/images/pos_checkout_mockup.png', 'Layar Transaksi POS Aktif', 'Tampilan proses input keranjang belanja POS yang terisi beberapa item, lengkap dengan tombol pembayaran instan.')">
-              <img src="/public/images/pos_checkout_mockup.png" alt="POS Transaksi Mockup">
+              onclick="openLightbox('public/images/pos_checkout_mockup.png', 'Layar Transaksi POS Aktif', 'Tampilan proses input keranjang belanja POS yang terisi beberapa item, lengkap dengan tombol pembayaran instan.')">
+              <img src="public/images/pos_checkout_mockup.png" alt="POS Transaksi Mockup">
               <div class="docs-visual-overlay">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   style="width: 14px; height: 14px;">
@@ -1830,8 +1856,8 @@
             </ul>
 
             <div class="docs-visual-card"
-              onclick="openLightbox('/public/images/dashboard_mockup.png', 'Dashboard Analisis Bisnis', 'Ringkasan visual dan statistik penjualan harian toko, grafik tren penjualan 7 hari terakhir, dan kategori terlaris.')">
-              <img src="/public/images/dashboard_mockup.png" alt="Stok Produk Mockup">
+              onclick="openLightbox('public/images/dashboard_mockup.png', 'Dashboard Analisis Bisnis', 'Ringkasan visual dan statistik penjualan harian toko, grafik tren penjualan 7 hari terakhir, dan kategori terlaris.')">
+              <img src="public/images/dashboard_mockup.png" alt="Stok Produk Mockup">
               <div class="docs-visual-overlay">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   style="width: 14px; height: 14px;">
@@ -1878,8 +1904,8 @@
             </ul>
 
             <div class="docs-visual-card"
-              onclick="openLightbox('/public/images/inventory_settings_mockup.png', 'Pemeliharaan Sistem Database', 'Modul pencadangan database baik dalam bentuk ekspor file JSON secara lokal maupun sinkronisasi cloud dengan Firebase.')">
-              <img src="/public/images/inventory_settings_mockup.png" alt="Cloud Backup Mockup">
+              onclick="openLightbox('public/images/inventory_settings_mockup.png', 'Pemeliharaan Sistem Database', 'Modul pencadangan database baik dalam bentuk ekspor file JSON secara lokal maupun sinkronisasi cloud dengan Firebase.')">
+              <img src="public/images/inventory_settings_mockup.png" alt="Cloud Backup Mockup">
               <div class="docs-visual-overlay">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   style="width: 14px; height: 14px;">
@@ -1908,8 +1934,8 @@
       <div class="gallery-grid">
         <!-- Item 1 -->
         <div class="gallery-item"
-          onclick="openLightbox('/public/images/pos_checkout_mockup.png', 'Layar Transaksi Point of Sale (POS)', 'Tampilan utama kasir saat melakukan pemrosesan belanja pelanggan. Dilengkapi dengan grid daftar barang, pencarian barcode otomatis, rincian diskon, kalkulator kembalian, dan visual struk mini.')">
-          <img src="/public/images/pos_checkout_mockup.png" alt="POS Checkout Screen">
+          onclick="openLightbox('public/images/pos_checkout_mockup.png', 'Layar Transaksi Point of Sale (POS)', 'Tampilan utama kasir saat melakukan pemrosesan belanja pelanggan. Dilengkapi dengan grid daftar barang, pencarian barcode otomatis, rincian diskon, kalkulator kembalian, dan visual struk mini.')">
+          <img src="public/images/pos_checkout_mockup.png" alt="POS Checkout Screen">
           <div class="gallery-info">
             <h4 class="gallery-title">Point of Sale (Modul Kasir)</h4>
             <p class="gallery-desc">Transaksi barcode super cepat dan kalkulator kembalian.</p>
@@ -1918,8 +1944,8 @@
 
         <!-- Item 2 -->
         <div class="gallery-item"
-          onclick="openLightbox('/public/images/dashboard_mockup.png', 'Dashboard Laporan Utama', 'Ringkasan performa penjualan minimarket yang meliputi total pendapatan harian, kuantitas transaksi penjualan, grafik tren penjualan 7 hari terakhir, dan kategori terlaris menggunakan visual grafik interaktif.')">
-          <img src="/public/images/dashboard_mockup.png" alt="Main Dashboard Screen">
+          onclick="openLightbox('public/images/dashboard_mockup.png', 'Dashboard Laporan Utama', 'Ringkasan performa penjualan minimarket yang meliputi total pendapatan harian, kuantitas transaksi penjualan, grafik tren penjualan 7 hari terakhir, dan kategori terlaris menggunakan visual grafik interaktif.')">
+          <img src="public/images/dashboard_mockup.png" alt="Main Dashboard Screen">
           <div class="gallery-info">
             <h4 class="gallery-title">Dashboard Laporan & Grafik</h4>
             <p class="gallery-desc">Analisis statistik tren omzet dan distribusi barang terlaris.</p>
@@ -1928,8 +1954,8 @@
 
         <!-- Item 3 -->
         <div class="gallery-item"
-          onclick="openLightbox('/public/images/inventory_settings_mockup.png', 'Pengaturan & Manajemen Sistem', 'Halaman khusus admin untuk mengatur data inventaris produk, kelola akun login kasir/karyawan, melakukan reset data demo minimarket, serta ekspor-impor database lokal dan cloud.')">
-          <img src="/public/images/inventory_settings_mockup.png" alt="Inventory & Settings Screen">
+          onclick="openLightbox('public/images/inventory_settings_mockup.png', 'Pengaturan & Manajemen Sistem', 'Halaman khusus admin untuk mengatur data inventaris produk, kelola akun login kasir/karyawan, melakukan reset data demo minimarket, serta ekspor-impor database lokal dan cloud.')">
+          <img src="public/images/inventory_settings_mockup.png" alt="Inventory & Settings Screen">
           <div class="gallery-info">
             <h4 class="gallery-title">Inventaris & Sinkronisasi Database</h4>
             <p class="gallery-desc">Kelola produk, pengguna, backup JSON lokal, dan sinkronisasi Firebase.</p>
@@ -2092,7 +2118,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">
-            <img src="/public/icon.png" alt="Kring Logo"
+            <img src="public/icon.png" alt="Kring Logo"
               style="width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));">
             <span>kring</span>
           </div>
