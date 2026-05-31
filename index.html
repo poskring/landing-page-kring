@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumentasi & Promosi POS Kring</title>
+  <meta name="description"
+    content="Dokumentasi resmi dan panduan penggunaan Aplikasi Kasir Desktop Kring. Sistem Point of Sale (POS) cepat, offline-first, dan terintegrasi cloud.">
+
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-base: #090d16;
+      --bg-surface: rgba(17, 25, 40, 0.75);
+      --bg-surface-solid: #111827;
+      --bg-surface-hover: rgba(31, 41, 55, 0.8);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-color-glow: rgba(99, 102, 241, 0.3);
+
+      --color-primary: #6366f1;
+      /* Indigo */
+      --color-primary-rgb: 99, 102, 241;
+      --color-secondary: #06b6d4;
+      /* Cyan */
+      --color-secondary-rgb: 6, 182, 212;
+      --color-accent: #a855f7;
+      /* Purple */
+
+      --color-success: #10b981;
+      /* Emerald */
+      --color-warning: #f59e0b;
+      /* Amber */
+      --color-danger: #ef4444;
+      /* Red */
+
+      --text-main: #f8fafc;
+      /* Slate 50 */
+      --text-muted: #94a3b8;
+      /* Slate 400 */
+      --text-dim: #64748b;
+      /* Slate 500 */
+
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+
+      --shadow-sm: 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 20px -8px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+      --shadow-glow: 0 0 24px 0 rgba(99, 102, 241, 0.15);
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* CUSTOM SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      border: 2px solid var(--bg-base);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* TYPOGRAPHY UTILITIES */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-alt {
+      background: linear-gradient(135deg, #f472b6 0%, #a855f7 50%, #6366f1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* CONTAINERS */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    /* GLASSMORPHISM CARD COMMON */
+    .glass-card {
+      background: var(--bg-surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-smooth);
+    }
+
+    /* STICKY HEADER & NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(9, 13, 22, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all var(--transition-fast);
+    }
+
+    header.scrolled {
+      padding: 6px 0;
+      background: rgba(9, 13, 22, 0.9);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+      color: var(--color-primary);
+      filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, #fff 40%, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      transition: width var(--transition-fast);
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--text-main);
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .cta-btn-primary {
+      background: linear-gradient(135deg, var(--color-primary) 0%, #4f46e5 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+      border: none;
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.6);
+    }
+
+    .cta-btn-outline {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .cta-btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .docs-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: none;
+      width: fit-content;
+    }
+
+    .docs-tab-content .docs-button {
+      margin-top: 16px;
+      padding: 14px 28px;
+      font-size: 15px;
+      border-radius: 12px;
+    }
+
+    .hero-actions .docs-button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+
+    .docs-button.button-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3), 0 0 1px 1px rgba(16, 185, 129, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .docs-button.button-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.25),
+          transparent);
+      transition: all 0.6s ease;
+    }
+
+    .docs-button.button-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px 0 rgba(16, 185, 129, 0.5), 0 0 15px rgba(16, 185, 129, 0.3);
+      background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    }
+
+    .docs-button.button-primary:hover::before {
+      left: 100%;
+    }
+
+    .docs-button.button-primary:active {
+      transform: translateY(-1px) scale(0.98);
+      box-shadow: 0 4px 12px 0 rgba(16, 185, 129, 0.4);
+    }
+
+    .docs-button svg {
+      transition: transform var(--transition-fast);
+    }
+
+    .docs-button:hover svg {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* MOBILE NAVIGATION */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 96px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      padding: 6px 14px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a5b4fc;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-badge svg {
+      width: 14px;
+      height: 14px;
+      color: var(--color-secondary);
+    }
+
+    .hero-title {
+      font-size: 54px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 540px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .hero-actions .cta-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 24px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 32px;
+    }
+
+    .hero-stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-stat-number {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* MOCKUP VISUAL IN HERO */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-glow-circle {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: blur(40px);
+      z-index: 1;
+    }
+
+    .hero-mockup-wrapper {
+      position: relative;
+      z-index: 2;
+      border-radius: 16px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px -10px rgba(99, 102, 241, 0.3);
+      animation: float 6s ease-in-out infinite;
+      width: 100%;
+      max-width: 520px;
+      cursor: pointer;
+    }
+
+    .hero-mockup-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      transition: transform var(--transition-smooth);
+    }
+
+    .hero-mockup-wrapper:hover .hero-mockup-img {
+      transform: scale(1.02);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* SECTION TITLE CLASS */
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px auto;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    /* FEATURE SECTIONS (HIGHLIGHTS GRID) */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(99, 102, 241, 0.03) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity var(--transition-smooth);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-color-glow);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon-wrapper {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-icon-wrapper.indigo {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+    }
+
+    .feature-icon-wrapper.cyan {
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      color: #22d3ee;
+    }
+
+    .feature-icon-wrapper.purple {
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+    }
+
+    .feature-icon-wrapper svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .feature-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-card-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* INTERACTIVE DOCUMENTATION SECTION */
+    .docs-section {
+      background: linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.3) 50%, transparent 100%);
+    }
+
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 0.35fr 0.65fr;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .docs-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: sticky;
+      top: 100px;
+    }
+
+    .docs-nav-item {
+      padding: 16px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-muted);
+      transition: all var(--transition-fast);
+    }
+
+    .docs-nav-item svg {
+      width: 20px;
+      height: 20px;
+      transition: transform var(--transition-fast);
+    }
+
+    .docs-nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      transform: translateX(4px);
+    }
+
+    .docs-nav-item.active {
+      background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, transparent 100%);
+      border-color: rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      box-shadow: inset 3px 0 0 0 var(--color-primary);
+    }
+
+    .docs-nav-item.active svg {
+      color: var(--color-primary);
+      transform: scale(1.1);
+    }
+
+    .docs-content-wrapper {
+      min-height: 480px;
+    }
+
+    .docs-tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out forwards;
+    }
+
+    .docs-tab-content.active {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .docs-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .docs-meta-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(6, 182, 212, 0.1);
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .docs-tab-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .docs-tab-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    /* STEP LIST IN DOCS */
+    .docs-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      list-style: none;
+    }
+
+    .docs-step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .docs-step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px 0 rgba(99, 102, 241, 0.3);
+    }
+
+    .docs-step-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      padding-top: 2px;
+    }
+
+    .docs-step-text strong {
+      color: var(--text-main);
+    }
+
+    .docs-visual-card {
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .docs-visual-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform var(--transition-smooth);
+    }
+
+    .docs-visual-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .docs-visual-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 20px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* KEYBOARD SHORTCUTS CHEAT SHEET */
+    .shortcuts-section {
+      background: radial-gradient(circle at center, rgba(168, 85, 247, 0.03) 0%, transparent 60%);
+    }
+
+    .shortcuts-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .shortcuts-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .key-indicator-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .key-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      transition: all var(--transition-fast);
+    }
+
+    .key-row:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(99, 102, 241, 0.2);
+    }
+
+    .key-cap-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .key-cap {
+      background: linear-gradient(180deg, #374151 0%, #111827 100%);
+      border: 1px solid #4b5563;
+      border-bottom-width: 4px;
+      border-radius: 6px;
+      color: #f3f4f6;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 4px 10px;
+      min-width: 42px;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    }
+
+    .key-plus {
+      color: var(--text-dim);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .key-action-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .key-action-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* KEYBOARD INTERACTIVE SIMULATOR */
+    .keyboard-simulator {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg), 0 0 30px rgba(99, 102, 241, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .sim-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-success);
+    }
+
+    .sim-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-success);
+      box-shadow: 0 0 8px var(--color-success);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.4;
+      }
+    }
+
+    .sim-screen {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 140px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #38bdf8;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .sim-screen-line {
+      word-break: break-all;
+    }
+
+    .sim-screen-input {
+      border-top: 1px dashed rgba(56, 189, 248, 0.2);
+      padding-top: 8px;
+      margin-top: 8px;
+      color: #f472b6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sim-keys-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .sim-key-btn {
+      background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+      border: 1px solid #374151;
+      border-bottom-width: 3px;
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--text-main);
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.1s ease;
+      user-select: none;
+    }
+
+    .sim-key-btn:hover {
+      background: #2563eb;
+      border-color: #3b82f6;
+      color: #fff;
+    }
+
+    .sim-key-btn:active,
+    .sim-key-btn.active {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+      color: #fff;
+    }
+
+    /* SCREENSHOTS GALLERY SECTION */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--transition-smooth);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(9, 13, 22, 0.8) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-info {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .gallery-item:hover .gallery-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .gallery-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* PRICING / LISENSI INFO */
+    .pricing-grid {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 16px;
+    }
+
+    .price-card {
+      width: 100%;
+      max-width: 440px;
+      padding: 48px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .price-card.popular {
+      border-color: var(--border-color-glow);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+    }
+
+    .price-card.popular::after {
+      content: 'TERPOPULER / REKOMENDASI';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+    }
+
+    .price-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .price-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .price-val {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: baseline;
+    }
+
+    .price-period {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-left: 6px;
+    }
+
+    .price-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+    }
+
+    .price-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .price-feature-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--color-success);
+      flex-shrink: 0;
+    }
+
+    .price-feature-item.disabled {
+      color: var(--text-dim);
+      text-decoration: line-through;
+    }
+
+    .price-feature-item.disabled svg {
+      color: var(--text-dim);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-color);
+      background: #070a10;
+      padding: 64px 0 32px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-brand-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 320px;
+    }
+
+    .footer-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* LIGHTBOX MODAL */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(9, 13, 22, 0.95);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-fast);
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition-fast);
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .lightbox-content-card {
+      width: 100%;
+      max-width: 900px;
+      background: var(--bg-surface-solid);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform var(--transition-smooth);
+    }
+
+    .lightbox-modal.active .lightbox-content-card {
+      transform: scale(1);
+    }
+
+    .lightbox-img-wrapper {
+      position: relative;
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lightbox-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .lightbox-info {
+      padding: 24px 32px;
+    }
+
+    .lightbox-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .lightbox-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+      }
+
+      .hero-badge {
+        align-self: center;
+      }
+
+      .hero-desc {
+        margin: 0 auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .docs-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .docs-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        position: static;
+        padding-bottom: 8px;
+      }
+
+      .docs-nav-item {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .shortcuts-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pricing-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 64px 0;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- STICKY HEADER & NAVBAR -->
+  <header id="main-header">
+    <div class="nav-container">
+      <a href="#hero" class="logo">
+        <img src="../public/icon.png" alt="Kring Logo"
+          style="width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));">
+        <span>kring</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Beranda</a></li>
+        <li><a href="#features">Fitur</a></li>
+        <li><a href="#docs">Dokumentasi</a></li>
+        <li><a href="#shortcuts">Shortcut</a></li>
+        <li><a href="#gallery">Galeri</a></li>
+        <li><a href="#pricing">Lisensi</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="#pricing" class="cta-btn cta-btn-primary">Aktivasi Lisensi</a>
+        <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            style="width: 24px; height: 24px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            Sistem POS Offline-First Stabil
+          </div>
+          <h1 class="hero-title">Sistem Kasir Kring <br><span class="gradient-text">Cepat & Profesional</span></h1>
+          <p class="hero-desc">Solusi desktop kasir (POS) premium yang didesain khusus untuk minimarket dan ritel.
+            Transaksi instan dengan barcode, manajemen stok kritis pintar, dan keandalan penuh tanpa bergantung pada
+            internet.</p>
+
+          <div class="hero-actions">
+            <a href="https://wa.me/6282223141356?text=Halo%20admin,%20saya%20ingin%20mengaktifkan%20lisensi%20kring%20POS."
+              class="docs-button button-primary" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                  d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.927-3.558 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.52a6.57 6.57 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.299-.62-.174-.063-.3-.095-.426.095-.127.19-.49.62-.6.729-.11.11-.22.126-.41.03-.19-.095-.8-.295-1.523-.94-.562-.5-1.077-1.116-1.187-1.306-.11-.19-.013-.292.08-.386.09-.09.19-.22.285-.33.095-.11.127-.19.19-.32.063-.13.031-.24-.015-.335-.047-.095-.426-1.025-.584-1.408-.154-.373-.325-.32-.426-.325-.098-.005-.21-.005-.321-.005a.62.62 0 0 0-.45.21c-.156.17-.597.584-.597 1.423s.61 1.64 1.696 1.783c.11.015 2.11 3.228 5.11 4.502.712.302 1.269.482 1.705.621.713.227 1.36.195 1.872.118.571-.085 1.74-.711 1.985-1.396.246-.686.246-1.272.172-1.396-.074-.124-.221-.19-.411-.285" />
+              </svg>
+              Hubungi WhatsApp Admin
+            </a>
+
+            <a href="#docs" class="cta-btn cta-btn-primary">Pelajari Dokumentasi</a>
+            <a href="#gallery" class="cta-btn cta-btn-outline">Lihat Halaman Kasir</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat-item">
+              <span class="hero-stat-number gradient-text-alt">&lt; 1 Detik</span>
+              <span class="hero-stat-label">Kecepatan Checkout</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-number gradient-text-alt">100%</span>
+              <span class="hero-stat-label">Offline Operasional</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-number gradient-text-alt">Firebase</span>
+              <span class="hero-stat-label">Aman di Sinkron Cloud</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-glow-circle"></div>
+          <div class="hero-mockup-wrapper"
+            onclick="openLightbox('../public/images/pos_checkout_mockup.png', 'Modul Kasir Utama (POS)', 'Tampilan modul transaksi dengan kolom barcode scan otomatis, keranjang belanja, kalkulasi diskon, dan metode pembayaran lengkap.')">
+            <img src="../public/images/pos_checkout_mockup.png" alt="POS Cashier Dashboard Mockup"
+              class="hero-mockup-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE SECTION -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Fitur Unggulan</span>
+        <h2 class="section-title">Semua yang Anda Butuhkan untuk Operasional Ritel</h2>
+        <p class="section-desc">Kasir Kring menggabungkan kecepatan pemrosesan lokal dengan kemudahan integrasi berbasis
+          cloud.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature Card 1 -->
+        <div class="glass-card feature-card">
+          <div class="feature-icon-wrapper indigo">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 20h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="feature-card-title">Transaksi Cepat & Barcode Scan</h3>
+          <p class="feature-card-desc">Scan barcode secara langsung untuk checkout di bawah 1 detik. Dilengkapi sistem
+            pencarian produk alternatif dan hotkey keyboard untuk produktivitas kasir.</p>
+        </div>
+
+        <!-- Feature Card 2 -->
+        <div class="glass-card feature-card">
+          <div class="feature-icon-wrapper cyan">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <h3 class="feature-card-title">Manajemen Stok & Kategori</h3>
+          <p class="feature-card-desc">Lacak inventaris toko secara dinamis dengan alarm otomatis untuk stok kritis.
+            Atur kategori barang dan ekspor database ke Microsoft Excel secara mudah.</p>
+        </div>
+
+        <!-- Feature Card 3 -->
+        <div class="glass-card feature-card">
+          <div class="feature-icon-wrapper purple">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 class="feature-card-title">Grafik & Tren Penjualan</h3>
+          <p class="feature-card-desc">Dashboard interaktif menampilkan grafik omzet harian 7 hari terakhir serta
+            diagram lingkaran kategori terlaris untuk mempermudah analisis keputusan bisnis.</p>
+        </div>
+
+        <!-- Feature Card 4 -->
+        <div class="glass-card feature-card">
+          <div class="feature-icon-wrapper cyan">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+            </svg>
+          </div>
+          <h3 class="feature-card-title">Backup Lokal & Cloud Sync</h3>
+          <p class="feature-card-desc">Keamanan data berganda dengan backup manual file JSON lokal serta sinkronisasi
+            otomatis satu-klik ke Cloud Firebase, menjaga data Anda tetap aman saat komputer rusak.</p>
+        </div>
+
+        <!-- Feature Card 5 -->
+        <div class="glass-card feature-card">
+          <div class="feature-icon-wrapper purple">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="feature-card-title">Aktivasi Berbasis HWID</h3>
+          <p class="feature-card-desc">Sistem lisensi aman yang mendeteksi Hardware ID unik dari masing-masing komputer.
+            Mencegah penyalahgunaan lisensi dan memberikan opsi durasi sewa yang fleksibel.</p>
+        </div>
+
+        <!-- Feature Card 6 -->
+        <div class="glass-card feature-card">
+          <div class="feature-icon-wrapper indigo">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+          </div>
+          <h3 class="feature-card-title">Printer Kasir & Struk Thermal</h3>
+          <p class="feature-card-desc">Modul cetak struk thermal yang dioptimalkan untuk ukuran kertas mini standar.
+            Mencakup rincian barang, jumlah diskon belanja, dan kaki struk kustom.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE DOCUMENTATION SECTION -->
+  <section id="docs" class="docs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Pusat Dokumentasi</span>
+        <h2 class="section-title">Panduan Pengoperasian Lengkap</h2>
+        <p class="section-desc">Pelajari langkah-langkah dasar pengoperasian aplikasi untuk kasir dan administrator
+          sistem Anda.</p>
+      </div>
+
+      <div class="docs-layout">
+        <!-- Sidebar Navigation -->
+        <div class="docs-nav">
+          <button class="docs-nav-item active" onclick="switchTab(event, 'tab-activation')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+            </svg>
+            Aktivasi Lisensi & Login
+          </button>
+          <button class="docs-nav-item" onclick="switchTab(event, 'tab-pos')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            Modul Penjualan (POS)
+          </button>
+          <button class="docs-nav-item" onclick="switchTab(event, 'tab-inventory')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            Manajemen Produk & Stok
+          </button>
+          <button class="docs-nav-item" onclick="switchTab(event, 'tab-cloud')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+            </svg>
+            Backup & Sync Cloud
+          </button>
+        </div>
+
+        <!-- Documentation Content Panel -->
+        <div class="docs-content-wrapper">
+          <!-- Tab 1: Activation -->
+          <div class="docs-tab-content active" id="tab-activation">
+            <div class="docs-info-block">
+              <span class="docs-meta-tag">Langkah Pertama</span>
+              <h3 class="docs-tab-title">Aktivasi Lisensi & Login Pengguna</h3>
+              <p class="docs-tab-desc">Saat pertama kali dijalankan, aplikasi akan meminta kunci lisensi guna
+                memverifikasi legalitas pemasangan program di komputer Anda.</p>
+            </div>
+
+            <ul class="docs-steps">
+              <li class="docs-step-item">
+                <div class="docs-step-number">1</div>
+                <div class="docs-step-text"><strong>Salin Hardware ID (HWID)</strong> Anda dari layar aktivasi awal
+                  aplikasi. HWID dibentuk unik berdasarkan CPU dan Hardware komputer.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">2</div>
+                <div class="docs-step-text">Kirim HWID tersebut ke <strong>WhatsApp Admin</strong> untuk mendapatkan
+                  Kunci Lisensi yang sah.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">3</div>
+                <div class="docs-step-text">Masukkan Kunci Lisensi ke input field lalu tekan tombol <strong>Aktifkan
+                    Sekarang</strong>. Program otomatis terbuka secara penuh.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">4</div>
+                <div class="docs-step-text">Pada layar login berikutnya, gunakan kredensial default untuk masuk:
+                  <strong>admin</strong> (password: <code>admin</code>) atau <strong>kasir</strong> (password:
+                  <code>kasir</code>).
+                </div>
+              </li>
+            </ul>
+
+            <a href="https://wa.me/6282223141356?text=Halo%20admin,%20saya%20ingin%20mengaktifkan%20lisensi%20kring%20POS."
+              class="docs-button button-primary" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                  d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.927-3.558 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.52a6.57 6.57 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.299-.62-.174-.063-.3-.095-.426.095-.127.19-.49.62-.6.729-.11.11-.22.126-.41.03-.19-.095-.8-.295-1.523-.94-.562-.5-1.077-1.116-1.187-1.306-.11-.19-.013-.292.08-.386.09-.09.19-.22.285-.33.095-.11.127-.19.19-.32.063-.13.031-.24-.015-.335-.047-.095-.426-1.025-.584-1.408-.154-.373-.325-.32-.426-.325-.098-.005-.21-.005-.321-.005a.62.62 0 0 0-.45.21c-.156.17-.597.584-.597 1.423s.61 1.64 1.696 1.783c.11.015 2.11 3.228 5.11 4.502.712.302 1.269.482 1.705.621.713.227 1.36.195 1.872.118.571-.085 1.74-.711 1.985-1.396.246-.686.246-1.272.172-1.396-.074-.124-.221-.19-.411-.285" />
+              </svg>
+              Hubungi WhatsApp Admin
+            </a>
+
+            <div class="docs-visual-card"
+              onclick="openLightbox('../public/images/inventory_settings_mockup.png', 'Pengaturan Lisensi & Pengguna', 'Halaman pemeliharaan untuk mengelola lisensi aplikasi serta menambah/mengedit akun admin dan kasir.')">
+              <img src="../public/images/inventory_settings_mockup.png" alt="Aktivasi Lisensi Mockup">
+              <div class="docs-visual-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  style="width: 14px; height: 14px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Klik untuk memperbesar gambar
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: POS -->
+          <div class="docs-tab-content" id="tab-pos">
+            <div class="docs-info-block">
+              <span class="docs-meta-tag">Fungsi Utama</span>
+              <h3 class="docs-tab-title">Operasional Modul POS (Point of Sale)</h3>
+              <p class="docs-tab-desc">Modul kasir dirancang dengan mengutamakan kecepatan entri data. Kasir dapat
+                melakukan seluruh transaksi murni menggunakan keyboard.</p>
+            </div>
+
+            <ul class="docs-steps">
+              <li class="docs-step-item">
+                <div class="docs-step-number">1</div>
+                <div class="docs-step-text">Tekan tombol <strong>F2</strong> untuk meletakkan kursor langsung ke kolom
+                  pencarian barcode.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">2</div>
+                <div class="docs-step-text"><strong>Scan barcode produk</strong> dengan pemindai laser, barang akan
+                  langsung ditambahkan ke keranjang belanja sebelah kanan dengan kuantitas 1.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">3</div>
+                <div class="docs-step-text">Jika barang tidak memiliki barcode, klik input pencarian nama produk di
+                  sebelahnya atau cari manual dengan memfilter kategori.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">4</div>
+                <div class="docs-step-text">Tekan tombol <strong>F4</strong> untuk membuka jendela pembayaran cepat.
+                  Masukkan nominal uang tunai yang diterima, pilih jenis pembayaran (Tunai, Debit, QRIS), lalu tekan
+                  <strong>Enter</strong> untuk cetak struk.
+                </div>
+              </li>
+            </ul>
+
+            <div class="docs-visual-card"
+              onclick="openLightbox('../public/images/pos_checkout_mockup.png', 'Layar Transaksi POS Aktif', 'Tampilan proses input keranjang belanja POS yang terisi beberapa item, lengkap dengan tombol pembayaran instan.')">
+              <img src="../public/images/pos_checkout_mockup.png" alt="POS Transaksi Mockup">
+              <div class="docs-visual-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  style="width: 14px; height: 14px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Klik untuk memperbesar gambar
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Inventory -->
+          <div class="docs-tab-content" id="tab-inventory">
+            <div class="docs-info-block">
+              <span class="docs-meta-tag">Pengelolaan Toko</span>
+              <h3 class="docs-tab-title">Manajemen Master Produk & Stok</h3>
+              <p class="docs-tab-desc">Melalui menu Produk, administrator dapat memantau seluruh ketersediaan barang di
+                minimarket secara komprehensif.</p>
+            </div>
+
+            <ul class="docs-steps">
+              <li class="docs-step-item">
+                <div class="docs-step-number">1</div>
+                <div class="docs-step-text">Klik tab menu <strong>Produk (Stok)</strong> di sidebar kiri aplikasi (Hanya
+                  dapat diakses oleh user berkedudukan <strong>Admin</strong>).</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">2</div>
+                <div class="docs-step-text">Gunakan filter <strong>Tampilkan Stok Kritis saja</strong> untuk melihat
+                  produk mana saja yang stoknya di bawah batas minimal kritis.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">3</div>
+                <div class="docs-step-text">Klik <strong>Tambah Produk Baru</strong> untuk membuka form input data baru
+                  (nama, harga beli, harga jual, barcode, serta kategori).</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">4</div>
+                <div class="docs-step-text">Gunakan fitur <strong>Ekspor Excel (.xlsx)</strong> untuk mengunduh seluruh
+                  data barang ke format tabel Excel dalam satu detik.</div>
+              </li>
+            </ul>
+
+            <div class="docs-visual-card"
+              onclick="openLightbox('../public/images/dashboard_mockup.png', 'Dashboard Analisis Bisnis', 'Ringkasan visual dan statistik penjualan harian toko, grafik tren penjualan 7 hari terakhir, dan kategori terlaris.')">
+              <img src="../public/images/dashboard_mockup.png" alt="Stok Produk Mockup">
+              <div class="docs-visual-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  style="width: 14px; height: 14px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Klik untuk memperbesar gambar
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Cloud -->
+          <div class="docs-tab-content" id="tab-cloud">
+            <div class="docs-info-block">
+              <span class="docs-meta-tag">Keamanan Data</span>
+              <h3 class="docs-tab-title">Sistem Cadangan (Backup) & Sinkronisasi</h3>
+              <p class="docs-tab-desc">Untuk menjaga keberlanjutan bisnis minimarket, aplikasi menyediakan fitur
+                pencadangan data ganda baik secara lokal maupun cloud.</p>
+            </div>
+
+            <ul class="docs-steps">
+              <li class="docs-step-item">
+                <div class="docs-step-number">1</div>
+                <div class="docs-step-text">Masuk ke menu <strong>Pengaturan Toko</strong>, cari bagian panel
+                  Pemeliharaan & Database di bagian bawah.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">2</div>
+                <div class="docs-step-text"><strong>Backup File Lokal:</strong> Klik tombol <strong>Ekspor File JSON
+                    (Backup)</strong> untuk mengunduh seluruh database aplikasi ke file cadangan JSON lokal.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">3</div>
+                <div class="docs-step-text"><strong>Backup Firebase Cloud:</strong> Pastikan komputer terhubung dengan
+                  internet, lalu klik <strong>Cadangkan ke Cloud (Firebase)</strong> untuk mengunggah database secara
+                  instan ke server cloud Anda.</div>
+              </li>
+              <li class="docs-step-item">
+                <div class="docs-step-number">4</div>
+                <div class="docs-step-text"><strong>Restore Data:</strong> Jika komputer kasir bermasalah atau diganti,
+                  Anda cukup mengimpor file backup JSON lokal atau menekan tombol <strong>Pulihkan dari Cloud</strong>
+                  untuk mengembalikan seluruh kondisi data seperti semula.</div>
+              </li>
+            </ul>
+
+            <div class="docs-visual-card"
+              onclick="openLightbox('../public/images/inventory_settings_mockup.png', 'Pemeliharaan Sistem Database', 'Modul pencadangan database baik dalam bentuk ekspor file JSON secara lokal maupun sinkronisasi cloud dengan Firebase.')">
+              <img src="../public/images/inventory_settings_mockup.png" alt="Cloud Backup Mockup">
+              <div class="docs-visual-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  style="width: 14px; height: 14px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Klik untuk memperbesar gambar
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Visual Interface</span>
+        <h2 class="section-title">Galeri Antarmuka Aplikasi</h2>
+        <p class="section-desc">Tampilan aplikasi kasir dirancang dengan UI minimalis, berkinerja tinggi, dan ramah
+          untuk mata dengan pilihan mode gelap otomatis.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Item 1 -->
+        <div class="gallery-item"
+          onclick="openLightbox('../public/images/pos_checkout_mockup.png', 'Layar Transaksi Point of Sale (POS)', 'Tampilan utama kasir saat melakukan pemrosesan belanja pelanggan. Dilengkapi dengan grid daftar barang, pencarian barcode otomatis, rincian diskon, kalkulator kembalian, dan visual struk mini.')">
+          <img src="../public/images/pos_checkout_mockup.png" alt="POS Checkout Screen">
+          <div class="gallery-info">
+            <h4 class="gallery-title">Point of Sale (Modul Kasir)</h4>
+            <p class="gallery-desc">Transaksi barcode super cepat dan kalkulator kembalian.</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="gallery-item"
+          onclick="openLightbox('../public/images/dashboard_mockup.png', 'Dashboard Laporan Utama', 'Ringkasan performa penjualan minimarket yang meliputi total pendapatan harian, kuantitas transaksi penjualan, grafik tren penjualan 7 hari terakhir, dan kategori terlaris menggunakan visual grafik interaktif.')">
+          <img src="../public/images/dashboard_mockup.png" alt="Main Dashboard Screen">
+          <div class="gallery-info">
+            <h4 class="gallery-title">Dashboard Laporan & Grafik</h4>
+            <p class="gallery-desc">Analisis statistik tren omzet dan distribusi barang terlaris.</p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="gallery-item"
+          onclick="openLightbox('../public/images/inventory_settings_mockup.png', 'Pengaturan & Manajemen Sistem', 'Halaman khusus admin untuk mengatur data inventaris produk, kelola akun login kasir/karyawan, melakukan reset data demo minimarket, serta ekspor-impor database lokal dan cloud.')">
+          <img src="../public/images/inventory_settings_mockup.png" alt="Inventory & Settings Screen">
+          <div class="gallery-info">
+            <h4 class="gallery-title">Inventaris & Sinkronisasi Database</h4>
+            <p class="gallery-desc">Kelola produk, pengguna, backup JSON lokal, dan sinkronisasi Firebase.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING & LICENSE ACTIVATION -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Skema Lisensi</span>
+        <h2 class="section-title">Harga Sewa & Lisensi POS</h2>
+        <p class="section-desc">Pilihan aktivasi lisensi sistem kasir offline-first yang transparan tanpa biaya tambahan
+          tersembunyi.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan 1 -->
+        <div class="glass-card price-card">
+          <div class="price-header">
+            <span class="price-badge">Lisensi Bulanan</span>
+            <div class="price-val">Rp 50K<span class="price-period">/bulan</span></div>
+            <p class="price-desc">Cocok untuk masa uji coba awal atau minimarket dengan sistem operasional musiman.</p>
+          </div>
+
+          <!-- <ul class="price-features">
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Akses Semua Modul Aplikasi (POS, Stok)
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Aktivasi Berbasis Hardware ID Komputer
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Backup database lokal (JSON)
+            </li>
+            <li class="price-feature-item disabled">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Sinkronisasi Cloud Firebase Otomatis
+            </li>
+            <li class="price-feature-item disabled">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Bebas Update Aplikasi Versi Baru
+            </li>
+          </ul> -->
+
+          <a href="#docs" class="cta-btn cta-btn-outline" style="text-align: center;">Mulai Aktivasi</a>
+        </div>
+
+        <!-- Plan 2 (Popular) -->
+        <div class="glass-card price-card popular">
+          <div class="price-header">
+            <span class="price-badge">Lisensi 12 Bulan (1 Tahun)</span>
+            <div class="price-val">Rp 500K<span class="price-period">/Tahun</span></div>
+            <p class="price-desc">Pilihan terbaik untuk penghematan maksimal, mencakup seluruh update fitur serta
+              integrasi database cloud ganda.</p>
+          </div>
+
+          <!-- <ul class="price-features">
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Akses Semua Modul Aplikasi (POS, Stok)
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Aktivasi Berbasis Hardware ID Komputer
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Backup database lokal (JSON) & Cloud Sync
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Free Update Aplikasi Versi Baru Selamanya
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Prioritas Dukungan Teknis 24/7
+            </li>
+          </ul> -->
+
+          <a href="#docs" class="cta-btn cta-btn-primary" style="text-align: center;">Aktifkan Lisensi Tahunan</a>
+        </div>
+        <div class="glass-card price-card ">
+          <div class="price-header">
+            <span class="price-badge">Lisensi Selamanya</span>
+            <div class="price-val" style="font-size: 35px;">Rp 1.500K<span class="price-period">/Selamanya</span>
+            </div>
+            <p class="price-desc">Pilihan sekali bayar untuk penggunaan tanpa batas waktu, cocok untuk bisnis yang
+              berkembang dalam jangka panjang.</p>
+          </div>
+
+          <!-- <ul class="price-features">
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Akses Semua Modul Aplikasi (POS, Stok)
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Aktivasi Berbasis Hardware ID Komputer
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Backup database lokal (JSON) & Cloud Sync
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Free Update Aplikasi Versi Baru Selamanya
+            </li>
+            <li class="price-feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Prioritas Dukungan Teknis 24/7
+            </li>
+          </ul> -->
+
+          <a href="#docs" class="cta-btn cta-btn-primary" style="text-align: center;">Aktifkan Lisensi </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="../public/icon.png" alt="Kring Logo"
+              style="width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));">
+            <span>kring</span>
+          </div>
+          <p class="footer-brand-desc">Aplikasi POS desktop offline-first berkecepatan tinggi yang dirancang untuk
+            kebutuhan kasir ritel & ritel modern.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigasi Halaman</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Beranda</a></li>
+            <li><a href="#features">Fitur Utama</a></li>
+            <li><a href="#docs">Panduan / Dokumentasi</a></li>
+            <li><a href="#shortcuts">Keyboard Shortcut</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Kontak & Dukungan</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Pusat Bantuan</a></li>
+            <li><a href="#pricing">Informasi Harga Lisensi</a></li>
+            <li><a href="tel:+6282223141356">+6282223141356</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX POPUP MODAL -->
+  <div class="lightbox-modal" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightboxForce(event)">&times;</button>
+    <div class="lightbox-content-card" onclick="event.stopPropagation()">
+      <div class="lightbox-img-wrapper">
+        <img src="" alt="" id="lightbox-img" class="lightbox-img">
+      </div>
+      <div class="lightbox-info">
+        <h3 id="lightbox-title" class="lightbox-title">Mockup Title</h3>
+        <p id="lightbox-desc" class="lightbox-desc">Mockup description will goes here dynamically.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+  <script>
+    // STICKY HEADER SCROLL EFFECT
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // ACTIVE MENU HIGHLIGHT ON SCROLL
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // DOCS TAB TRANSITION SYSTEM
+    function switchTab(event, tabId) {
+      // Deactivate all tab nav items
+      const tabItems = document.querySelectorAll('.docs-nav-item');
+      tabItems.forEach(item => item.classList.remove('active'));
+
+      // Deactivate all tab content blocks
+      const tabContents = document.querySelectorAll('.docs-tab-content');
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      // Activate selected tab nav item & content
+      event.currentTarget.classList.add('active');
+      const activeContent = document.getElementById(tabId);
+      activeContent.classList.add('active');
+    }
+
+    // KEYBOARD SIMULATOR LOGIC
+    const keyActions = {
+      'F2': {
+        log: 'Menempatkan fokus kursor ke input BARCODE. Silakan scan barang!',
+        status: 'FOKUS BARCODE',
+        cart: 'TOTAL: Rp 0'
+      },
+      'F4': {
+        log: 'Membuka modal PEMBAYARAN. Silakan input jumlah nominal tunai.',
+        status: 'LAYAR PEMBAYARAN',
+        cart: 'TOTAL: Rp 74.500'
+      },
+      'F8': {
+        log: 'Mereset keranjang belanja. Keranjang belanja dibersihkan!',
+        status: 'KERANJANG RESET',
+        cart: 'TOTAL: Rp 0'
+      },
+      'ESC': {
+        log: 'Membatalkan modal aktif dan kembali ke Dashboard utama.',
+        status: 'IDLE (MAIN MENU)',
+        cart: 'TOTAL: Rp 0'
+      }
+    };
+
+    function simulateKey(key) {
+      // Simulate key press UI effect
+      const keyBtn = document.querySelector(`.sim-key-btn[data-key="${key === 'ESC' ? 'Escape' : key}"]`);
+      if (keyBtn) {
+        keyBtn.classList.add('active');
+        setTimeout(() => keyBtn.classList.remove('active'), 150);
+      }
+
+      // Update Screen Logs
+      const log1 = document.getElementById('sim-log-1');
+      const log2 = document.getElementById('sim-log-2');
+      const log3 = document.getElementById('sim-log-3');
+      const statusText = document.getElementById('sim-input-status');
+      const cartCountText = document.getElementById('sim-cart-count');
+
+      // Shift logs upward
+      log1.innerText = log2.innerText;
+      log2.innerText = log3.innerText;
+
+      const action = keyActions[key];
+      if (action) {
+        log3.innerText = `> Tombol [${key}] ditekan: ${action.log}`;
+        statusText.innerText = `STATUS: ${action.status}`;
+        cartCountText.innerText = action.cart;
+      }
+    }
+
+    // Capture real keyboard events in simulator section when scrolled into view
+    window.addEventListener('keydown', (e) => {
+      // Only execute if simulator is close to viewport center
+      const simElement = document.querySelector('.keyboard-simulator');
+      const rect = simElement.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (inView) {
+        if (e.key === 'F2') {
+          e.preventDefault();
+          simulateKey('F2');
+        } else if (e.key === 'F4') {
+          e.preventDefault();
+          simulateKey('F4');
+        } else if (e.key === 'F8') {
+          e.preventDefault();
+          simulateKey('F8');
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          simulateKey('ESC');
+        }
+      }
+    });
+
+    // LIGHTBOX POPUP MODAL LOGIC
+    function openLightbox(imgSrc, title, description) {
+      const modal = document.getElementById('lightbox');
+      const modalImg = document.getElementById('lightbox-img');
+      const modalTitle = document.getElementById('lightbox-title');
+      const modalDesc = document.getElementById('lightbox-desc');
+
+      modalImg.src = imgSrc;
+      modalTitle.innerText = title;
+      modalDesc.innerText = description;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Lock background scroll
+    }
+
+    function closeLightbox(event) {
+      // Close only if clicked on background overlay
+      if (event.target === document.getElementById('lightbox')) {
+        closeLightboxForce();
+      }
+    }
+
+    function closeLightboxForce(event) {
+      if (event) event.stopPropagation();
+      const modal = document.getElementById('lightbox');
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Unlock background scroll
+    }
+  </script>
+</body>
+
+</html>
